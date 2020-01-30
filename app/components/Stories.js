@@ -1,5 +1,6 @@
 import React from 'react'
 import Story from './Story'
+import Loading from './Loading'
 import { getStories } from '../utils/api'
 
 export default class Stories extends React.Component {
@@ -16,7 +17,6 @@ export default class Stories extends React.Component {
     this.getData()
   }
   componentDidUpdate(prevProps) {
-    console.log(prevProps.type !== this.props.type)
     prevProps.type !== this.props.type ? this.getData() : null
   }
   getData() {
@@ -26,7 +26,6 @@ export default class Stories extends React.Component {
     })
     getStories(this.props.type)
       .then((stories) => {
-        console.log(stories)
         this.setState({
           loading: false,
           stories
@@ -39,7 +38,7 @@ export default class Stories extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return <p>Loading</p>
+      return <Loading />
     }
     return (
       <Story stories={this.state.stories} />
