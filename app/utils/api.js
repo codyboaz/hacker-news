@@ -1,5 +1,5 @@
-export function getTopPosts() {
-  return fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+export function getStories(type) {
+  return fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json`)
     .then((data) => data.json())
     .then((ids) => {
       if (!ids) {
