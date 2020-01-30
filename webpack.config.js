@@ -17,7 +17,8 @@ module.exports = {
   mode: process.env.NODE.ENV === 'production' ? 'production' : 'development',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './app/index.html'
+      template: './app/index.html',
+      favicon: 'app/images/headerImg.ico'
     }),
     new CopyPlugin([
       { from: '_redirects' }
