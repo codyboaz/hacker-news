@@ -11,9 +11,14 @@ export function getStories(type) {
     .then((posts) => removeDeleted(removeDead(posts)))
 }
 
-function getItem(id) {
+export function getItem(id) {
   return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
     .then((data) => data.json())
+}
+
+export function getComments(ids) {
+  return Promise.all(ids.map(getItem))
+    .then((comments) => CommentsOnly(removeDeleted(removeDead(comments))))
 }
 
 export function getUserInfo(id) {
@@ -30,6 +35,10 @@ export function getUserInfo(id) {
 export function getUserStories(ids) {
   return Promise.all(ids.map(getItem))
     .then((posts) => storiesOnly(removeDead(removeDeleted(posts))))
+}
+
+function CommentsOnly(posts) {
+  return posts.filter(({ type }) => type === 'comment')
 }
 
 function storiesOnly(posts) {
