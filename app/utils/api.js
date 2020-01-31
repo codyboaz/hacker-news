@@ -7,13 +7,33 @@ export function getStories(type) {
       }
       return ids.slice(0, 50)
     })
-    .then((ids) => Promise.all(ids.map(getStoryFromId)))
+    .then((ids) => Promise.all(ids.map(getItem)))
     .then((posts) => removeDeleted(removeDead(posts)))
 }
 
-function getStoryFromId(id) {
+function getItem(id) {
   return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
     .then((data) => data.json())
+}
+
+export function getUserInfo(id) {
+  return fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json`)
+    .then((data) => data.json())
+    .then((user) => {
+      if (!user) {
+        throw new Error('Error fetching user')
+      }
+      return user
+    })
+}
+
+export function getUserStories(ids) {
+  return Promise.all(ids.map(getItem))
+    .then((posts) => storiesOnly(removeDead(removeDeleted(posts))))
+}
+
+function storiesOnly(posts) {
+  return posts.filter(({ type }) => type === 'story')
 }
 
 function removeDead(posts) {

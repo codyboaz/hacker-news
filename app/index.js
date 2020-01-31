@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Stories from './components/Stories'
 import Nav from './components/Nav'
+import User from './components/User'
 import { ThemeProvider } from './contexts/theme'
 import './styles.css'
 import {
@@ -37,6 +38,7 @@ class App extends React.Component {
                 <Route path='/new' render={() => (
                   <Stories type='new' />
                 )} />
+                <Route path='/user' component={User} />
                 <Route render={() => 404} />
               </Switch>
             </main>
