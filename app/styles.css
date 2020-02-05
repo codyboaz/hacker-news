@@ -5,9 +5,6 @@ html, body, #app {
   height: 100%;
   width: 100%;
 }
-/* * {
-  border: 1px solid red;
-} */
 
 .dark {
   background-color: #000;
@@ -73,22 +70,33 @@ html, body, #app {
 .story-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .story-list li{
-  margin: 20px 0;
+  margin: 1%;
+  flex-basis: 98%;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 200px;
+  text-align: center;
 }
 
 .story-link {
   text-decoration: none;
   font-weight: 600;
+  margin: 8% 0;
+  display: block;
 }
 
-.story-link.light{
+.link-light{
   color: #a83232;
 }
 
-.story-link.dark{
+.link-dark{
   color: #f2f2f2;
 }
 
@@ -98,12 +106,16 @@ html, body, #app {
   color: #8a8a8a;
 }
 
-.story-info a.light {
+.info-light a {
   color: #000;
 }
 
-.story-info a.dark {
+.info-dark a {
   color: #f2f2f2;
+}
+
+.story-info p{
+  margin: 2px;
 }
 
 .post-header {
@@ -114,5 +126,17 @@ html, body, #app {
   background-color: #f0f0f0;
   margin: 10px 0;
   padding: 10px;
+}
+
+@media screen and (min-width: 640px) {
+  .story-list li{
+    flex-basis: 48%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .story-list li{
+    flex-basis: 23%;
+  }
 }
 
