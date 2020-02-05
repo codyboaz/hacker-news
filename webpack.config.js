@@ -15,10 +15,10 @@ module.exports = {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] }
     ]
   },
-  mode: process.env.NODE.ENV === 'production' ? 'production' : 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './app/index.html',
+      template: 'app/index.html',
       favicon: 'app/images/headerImg.ico'
     }),
     new CopyPlugin([
