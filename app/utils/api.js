@@ -46,7 +46,7 @@ function storiesOnly(posts) {
 }
 
 function removeDead(posts) {
-  return posts.filter(({ dead }) => dead !== true)
+  return posts.filter(Boolean).filter(({ dead }) => dead !== true)
 }
 
 function removeDeleted(posts) {
